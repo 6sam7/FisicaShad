@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador interactivo de caída libre para aprender física, energía y programación.">
+  <title>Laboratorio de Física | Caída libre</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">F</span><span>FÍSICA<span class="brand-light">LAB</span></span></a>
+    <span class="top-tag">SIMULADOR INTERACTIVO</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">EXPERIMENTO 01 · MECÁNICA</p>
+        <h1>Caída <span>libre.</span></h1>
+        <p class="intro">Explora cómo cae un objeto y descubre cómo se transforma su energía mientras desciende.</p>
+        <a class="primary-link" href="#laboratorio">Comenzar experimento <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-ball"></div><div class="hero-line"></div>
+        <span class="art-label">g = 9.81 m/s²</span>
+      </div>
+    </section>
+
+    <section class="learning-grid">
+      <article class="mini-card"><span class="mini-icon">01</span><div><h3>HTML</h3><p>La estructura de la página.</p></div></article>
+      <article class="mini-card"><span class="mini-icon">02</span><div><h3>CSS</h3><p>El diseño y los colores.</p></div></article>
+      <article class="mini-card"><span class="mini-icon">03</span><div><h3>JavaScript</h3><p>Los cálculos y la interacción.</p></div></article>
+    </section>
+
+    <section class="section-heading" id="laboratorio">
+      <div><p class="eyebrow">PANEL DE CONTROL</p><h2>Tu laboratorio</h2></div>
+      <span class="live-pill"><i></i> EN VIVO</span>
+    </section>
+
+    <section class="lab-layout">
+      <article class="panel controls-panel">
+        <div class="panel-heading"><div><span class="step">A</span><h3>Parámetros</h3></div><button class="reset-btn" id="resetBtn">↺ Reiniciar</button></div>
+        <p class="panel-desc">Ajusta las condiciones iniciales del experimento.</p>
+
+        <div class="control">
+          <div class="control-top"><label for="mass">Masa del objeto</label><strong><span id="massValue">2.0</span> <small>kg</small></strong></div>
+          <input id="mass" type="range" min="0.5" max="10" step="0.5" value="2">
+          <div class="range-labels"><span>0.5 kg</span><span>10 kg</span></div>
+        </div>
+        <div class="control">
+          <div class="control-top"><label for="height">Altura inicial</label><strong><span id="heightValue">20</span> <small>m</small></strong></div>
+          <input id="height" type="range" min="5" max="100" step="1" value="20">
+          <div class="range-labels"><span>5 m</span><span>100 m</span></div>
+        </div>
+        <div class="control">
+          <div class="control-top"><label for="gravity">Gravedad</label><strong><span id="gravityValue">9.81</span> <small>m/s²</small></strong></div>
+          <input id="gravity" type="range" min="1" max="20" step="0.01" value="9.81">
+          <div class="range-labels"><span>1 m/s²</span><span>20 m/s²</span></div>
+        </div>
+
+        <div class="button-row">
+          <button class="run-btn" id="startBtn">▶ Iniciar caída</button>
+          <button class="secondary-btn" id="pauseBtn" disabled>Ⅱ Pausar</button>
+        </div>
+        <p class="hint">Consejo: cambia la altura o la gravedad y observa cómo varía el tiempo de caída.</p>
+      </article>
+
+      <article class="panel simulation-panel">
+        <div class="panel-heading"><div><span class="step">B</span><h3>Visualización</h3></div><span class="simulation-label">VISTA LATERAL</span></div>
+        <div class="scene" id="scene">
+          <div class="sky-label">ALTURA <b id="sceneHeight">20 m</b></div>
+          <div class="dashed-guide"></div>
+          <div class="fall-track"><div class="object-ball" id="objectBall"><span></span></div></div>
+          <div class="ground"><span>SUPERFICIE</span></div>
+          <div class="scene-status" id="sceneStatus">Listo para comenzar</div>
+        </div>
+        <div class="metrics">
+          <div><span>Tiempo</span><strong id="timeValue">0.00 <small>s</small></strong></div>
+          <div><span>Velocidad</span><strong id="velocityValue">0.00 <small>m/s</small></strong></div>
+          <div><span>Distancia</span><strong id="distanceValue">0.00 <small>m</small></strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-heading results-heading">
+      <div><p class="eyebrow">ANÁLISIS DE RESULTADOS</p><h2>La energía en movimiento</h2></div>
+      <span class="unit-note">Unidades: joules (J)</span>
+    </section>
+
+    <section class="energy-grid">
+      <article class="energy-card potential"><span class="energy-symbol">Ep</span><p>Energía potencial</p><strong id="epValue">392.40 <small>J</small></strong><div class="energy-track"><i id="epBar"></i></div></article>
+      <article class="energy-card kinetic"><span class="energy-symbol">Ec</span><p>Energía cinética</p><strong id="ecValue">0.00 <small>J</small></strong><div class="energy-track"><i id="ecBar"></i></div></article>
+      <article class="energy-card mechanical"><span class="energy-symbol">Em</span><p>Energía mecánica</p><strong id="emValue">392.40 <small>J</small></strong><div class="energy-track"><i id="emBar"></i></div></article>
+    </section>
+
+    <section class="data-layout">
+      <article class="panel chart-panel">
+        <div class="panel-heading"><div><span class="step">C</span><h3>Transformación de energía</h3></div></div>
+        <p class="panel-desc">Comparación de energía potencial y cinética durante la caída.</p>
+        <canvas id="energyChart" height="220" aria-label="Gráfica de energía potencial y cinética"></canvas>
+        <div class="legend"><span><i class="legend-ep"></i> Potencial (Ep)</span><span><i class="legend-ec"></i> Cinética (Ec)</span><span><i class="legend-em"></i> Mecánica (Em)</span></div>
+      </article>
+      <article class="panel table-panel">
+        <div class="panel-heading"><div><span class="step">D</span><h3>Tabla de datos</h3></div></div>
+        <p class="panel-desc">Valores calculados en el instante actual.</p>
+        <div class="table-wrap"><table><thead><tr><th>Magnitud</th><th>Valor</th></tr></thead><tbody>
+          <tr><td>Masa</td><td id="tableMass">2.00 kg</td></tr>
+          <tr><td>Altura restante</td><td id="tableHeight">20.00 m</td></tr>
+          <tr><td>Gravedad</td><td id="tableGravity">9.81 m/s²</td></tr>
+          <tr><td>Tiempo total</td><td id="tableTotal">2.02 s</td></tr>
+          <tr><td>Velocidad final</td><td id="tableFinal">19.81 m/s</td></tr>
+        </tbody></table></div>
+      </article>
+    </section>
+
+    <section class="theory">
+      <div class="theory-title"><p class="eyebrow">FUNDAMENTO TEÓRICO</p><h2>La física detrás del código</h2><p>En la caída libre ideal se desprecia la resistencia del aire y el objeto parte del reposo.</p></div>
+      <div class="formula-list">
+        <div class="formula"><span>01</span><div><b>Energía potencial</b><code>Ep = m · g · h</code></div></div>
+        <div class="formula"><span>02</span><div><b>Energía cinética</b><code>Ec = ½ · m · v²</code></div></div>
+        <div class="formula"><span>03</span><div><b>Energía mecánica</b><code>Em = Ep + Ec</code></div></div>
+        <div class="formula"><span>04</span><div><b>Tiempo de caída</b><code>t = √(2 · h / g)</code></div></div>
+        <div class="formula"><span>05</span><div><b>Velocidad</b><code>v = g · t</code></div></div>
+      </div>
+    </section>
+
+    <footer><span class="brand"><span class="brand-mark">F</span> FÍSICA<span class="brand-light">LAB</span></span><span>Proyecto educativo · HTML + CSS + JavaScript</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

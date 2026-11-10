@@ -1,0 +1,32 @@
+SIMULADOR DE CAÍDA LIBRE — FÍSICALAB
+====================================
+
+ARCHIVOS
+- index.html: estructura y contenido.
+- style.css: diseño visual en tonos rojos y adaptación a celular.
+- script.js: controles, cálculos, animación y gráfica.
+
+CÓMO ABRIRLO
+1. Descomprime la carpeta.
+2. Abre la carpeta en Visual Studio Code.
+3. Abre index.html en el navegador (o usa la extensión Live Server).
+4. También puedes abrir index.html directamente desde el administrador de archivos del celular.
+
+QUÉ INCLUYE
+- Controles deslizantes para masa, altura y gravedad.
+- Animación sencilla de caída libre.
+- Botones para iniciar, pausar y reiniciar.
+- Cálculo en tiempo real de tiempo, velocidad y distancia.
+- Energía potencial, cinética y mecánica.
+- Gráfica y tabla de resultados.
+- Diseño adaptable a pantallas pequeñas, con tema rojo.
+
+MODELO FÍSICO
+Se supone que el objeto parte del reposo y que no existe resistencia del aire:
+Ep = m·g·h
+Ec = 1/2·m·v²
+Em = Ep + Ec
+t = √(2h/g)
+v = g·t
+
+Nota: La gráfica muestra la transformación ideal de energía durante la caída.
